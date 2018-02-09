@@ -1,0 +1,23 @@
+{
+  "name": "NYTReact",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": "https://github.com/armsle2/NYTReact.git",
+  "author": "Leaveil <leaveil.armstrong@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "body-parser": "^1.18.2",
+    "concurrently": "^3.5.1",
+    "express": "^4.16.2",
+    "mongoose": "^5.0.3"
+  },
+  "scripts": {
+    "server": "node server.js",
+    "start": "nodemon server.js",
+    "dev": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
+    "client": "node scripts/start-client.js",
+    "build": "node scripts/build.js",
+    "seed": "node scripts/seedsDB.js"
+  }
+}
