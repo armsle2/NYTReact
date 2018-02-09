@@ -25,7 +25,7 @@ class Articles extends Component {
     API.loadArticles()
       .then(res => {
         console.log(res)
-        this.setState({savedArticles: res})
+        this.setState({savedArticles: res.data})
       })
       .catch(err => console.log(err));
   };
@@ -71,13 +71,15 @@ class Articles extends Component {
 
   render() {
     return (
-      <div className = 'container-fluid'>
+      <div>
+      <div className='jumbotron'>
+        <h1>NY Times Article Scrubber</h1>
+        <h2>Search for and annotate articles of interest!</h2>
+        </div>
+      <div className = 'container'>
         <div className= 'row'>
           <div className="col-md-12">
-            <div className='jumbotron'>
-              <h1>NY Times Article Scrubber</h1>
-              <h2>Search for and annotate articles of interest!</h2>
-            </div>
+            
             <form>
               <div className='form-group'>
                 <label htmlFor="topic">Topic</label>
@@ -128,13 +130,14 @@ class Articles extends Component {
                           {article.headline.main}
                         </strong>
                       </a>
-                      <p>{article.pub_date}</p>
+                      <span className="results">
                       <button className="btn btn-primary"
                         onClick={() => this.saveArticle({
                           title: article.headline.main,
                           url: article.web_url,
                           date: article.pub_date
-                        })}>Save</button>
+                        })}>Save</button></span>
+                      <p>{article.pub_date.slice(0, 10)}</p>
                     </li>
                     ) : ('')
                 ))}
@@ -147,26 +150,28 @@ class Articles extends Component {
         </div>
         <div className="row">
           <div className="col-md-12 col-sm-12 articles">
-              <h1>My Saved Articles</h1>
-              {/*{this.state.articles.length ? (
-            <ul>
-                  {this.state.books.map(book => (
-                    <li key={book._id}>
-                      <Link to={"/books/" + book._id}>
+                <h1>My Saved Articles</h1>
+            {this.state.savedArticles.length ? (
+              <ul className="list-group">
+                {this.state.savedArticles.map((savedArticle, index) => (
+                    <li key={savedArticle._id}>
+                      <a href={savedArticle.url} target="_blank">
                         <strong>
-                          {book.title} by {book.author}
+                          {savedArticle.title}
                         </strong>
-                      </Link>
-                      <DeleteBtn onClick={() => this.deleteArticle(book._id)} />
+                      </a>
+                      <DeleteBtn onClick={() => this.deleteArticle(savedArticle._id)} />
+                      <p>{savedArticle.date.slice(0, 10)}</p>
                     </li>
-                  ))}
-            </ul>
-              ) : (
-                <h3>You Haven't Saved Any Articles Yet</h3>
-              )}*/}
+                ))}
+              </ul>
+            ) : (
+              <h3>No Results to Display</h3>
+            )}
 
           </div>
         </div>
+      </div>
       </div>
     );
   }

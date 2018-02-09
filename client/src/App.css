@@ -1,3 +1,24 @@
+ul {
+  list-style: none;
+}
+
+body{
+  background-color: #8a95e5;
+  color: black;
+}
+
+label{
+  color: white;
+}
+a{
+  color: #e3e0e0;
+}
+
+.jumbotron {
+  text-align: center;
+  background-color: #cee8ff;
+}
+
 .App {
   text-align: center;
 }
@@ -23,7 +44,7 @@
 }
 
 .articles {
-  border-color: #969393;
+  border-color: #e3e0e0;
   border-style: solid;
   border-radius: 10px;
   text-align: center;
@@ -31,10 +52,16 @@
 }
 .form-control{
   margin-bottom: 10px;
+  width: 50%;
+  margin-left: 25%;
 }
 
 .form-group {
   text-align: center
+}
+
+.results {
+  padding-left: 20px;
 }
 
 @keyframes App-logo-spin {
