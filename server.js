@@ -26,5 +26,5 @@ mongoose.connect(
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
-	console.log(path.join(__dirname, "../client/build/index.html"))
+	// console.log(path.join(__dirname, "../client/build/index.html"))
 });
