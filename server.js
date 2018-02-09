@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 // Serve up static assets
 app.use(routes);
-app.use(express.static(__dirname + '/client/build'));
+app.use(express.static('/client/build'));
 // Add routes, both API and view
 
 
