@@ -3,7 +3,8 @@ import DeleteBtn from "./DeleteBtn";
 // import Jumbotron from "../../components/Jumbotron";
 import API from "../utils/API";
 import { Link } from "react-router-dom";
-import apiKey from '../utils/apikey.js'
+import apiKey from '../utils/apikey.js';
+import axios from 'axios';
 // import { Col, Row, Container } from "../../components/Grid";
 // import { List, ListItem } from "../../components/List";
 // import { Input, TextArea, FormBtn } from "../../components/Form";
@@ -22,12 +23,14 @@ class Articles extends Component {
   }
 
   loadArticles = () => {
-    API.loadArticles()
-      .then(res => {
-        console.log(res)
-        this.setState({savedArticles: res.data})
+    console.log("Load articles")
+    axios.get("http://localhost:8080/api/articles")
+      .then((response) => {
+        console.log(response)
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        console.log(err.message);
+      })
   };
 
   deleteArticle = id => {
@@ -71,15 +74,13 @@ class Articles extends Component {
 
   render() {
     return (
-      <div>
-      <div className='jumbotron'>
-        <h1>NY Times Article Scrubber</h1>
-        <h2>Search for and annotate articles of interest!</h2>
-        </div>
-      <div className = 'container'>
+      <div className = 'container-fluid'>
         <div className= 'row'>
           <div className="col-md-12">
-            
+            <div className='jumbotron'>
+              <h1>NY Times Article Scrubber</h1>
+              <h2>Search for and annotate articles of interest!</h2>
+            </div>
             <form>
               <div className='form-group'>
                 <label htmlFor="topic">Topic</label>
@@ -130,14 +131,13 @@ class Articles extends Component {
                           {article.headline.main}
                         </strong>
                       </a>
-                      <span className="results">
+                      <p>{article.pub_date}</p>
                       <button className="btn btn-primary"
                         onClick={() => this.saveArticle({
                           title: article.headline.main,
                           url: article.web_url,
                           date: article.pub_date
-                        })}>Save</button></span>
-                      <p>{article.pub_date.slice(0, 10)}</p>
+                        })}>Save</button>
                     </li>
                     ) : ('')
                 ))}
@@ -150,28 +150,26 @@ class Articles extends Component {
         </div>
         <div className="row">
           <div className="col-md-12 col-sm-12 articles">
-                <h1>My Saved Articles</h1>
-            {this.state.savedArticles.length ? (
-              <ul className="list-group">
-                {this.state.savedArticles.map((savedArticle, index) => (
-                    <li key={savedArticle._id}>
-                      <a href={savedArticle.url} target="_blank">
+              <h1>My Saved Articles</h1>
+              {/*{this.state.articles.length ? (
+            <ul>
+                  {this.state.books.map(book => (
+                    <li key={book._id}>
+                      <Link to={"/books/" + book._id}>
                         <strong>
-                          {savedArticle.title}
+                          {book.title} by {book.author}
                         </strong>
-                      </a>
-                      <DeleteBtn onClick={() => this.deleteArticle(savedArticle._id)} />
-                      <p>{savedArticle.date.slice(0, 10)}</p>
+                      </Link>
+                      <DeleteBtn onClick={() => this.deleteArticle(book._id)} />
                     </li>
-                ))}
-              </ul>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+                  ))}
+            </ul>
+              ) : (
+                <h3>You Haven't Saved Any Articles Yet</h3>
+              )}*/}
 
           </div>
         </div>
-      </div>
       </div>
     );
   }
