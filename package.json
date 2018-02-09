@@ -18,6 +18,7 @@
     "dev": "concurrently \"nodemon server.js\" \"cd client && yarn start\"",
     "client": "node scripts/start-client.js",
     "build": "node scripts/build.js",
-    "seed": "node scripts/seedsDB.js"
+    "seed": "node scripts/seedsDB.js",
+    "postinstall": "cd client && yarn install && npm run build"
   }
 }
