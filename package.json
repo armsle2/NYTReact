@@ -19,6 +19,6 @@
     "client": "node scripts/start-client.js",
     "build": "node scripts/build.js",
     "seed": "node scripts/seedsDB.js",
-    "postinstall": "cd client && yarn install && npm run build"
+    "postinstall": "cd client && npm install && npm run build"
   }
 }
