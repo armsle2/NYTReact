@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const articlesController = require("../../controllers/articlesController");
+const articlesController = require("../../controllers/articlescontroller");
 
 // get saved articles and save a new article
 router
