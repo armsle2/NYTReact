@@ -12,7 +12,7 @@ router.use("/api", apiRoutes);
 
 // function* index() {
 //   this.body = fs.readFileSync(path.resolve(path.join('build', 'index.html')), 'utf8')
-// }
+// } m
 
 // router.get('*', index)
 
