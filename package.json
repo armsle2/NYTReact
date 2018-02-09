@@ -16,6 +16,6 @@
     "server": "node server.js",
     "start": "nodemon server.js",
     "dev": "concurrently \"nodemon server.js\" \"cd client && yarn start\"",
-    "heroku-postbuild": "cd client && yarn install && npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   }
 }
