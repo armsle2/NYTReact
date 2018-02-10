@@ -8,12 +8,18 @@
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
-    "concurrently": "^3.5.1",
     "express": "^4.16.2",
     "mongoose": "^5.0.3"
+  },
+  "devDependencies": {
+    "concurrently": "^3.5.0"
   },
   "scripts": {
     "server": "node server.js",
     "start": "nodemon server.js",
-    "dev": "concurrently \"nodemon server.js\" \"cd client && yarn start\""
+    "dev": "concurrently \"nodemon server.js\" \"cd client && yarn start\"",
+    "build": "node scripts/build.js",
+    "heroku-postbuild": "cd client && npm install && npm run build"
+
+  }
 }
